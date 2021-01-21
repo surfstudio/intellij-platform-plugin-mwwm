@@ -6,5 +6,5 @@ object FileNaming {
     const val widget = "_widget.dart"
     const val wm = "_wm.dart"
     const val route = "_route.dart"
-    const val di = "_wm_builder.dart"
+    const val di = "_component.dart"
 }

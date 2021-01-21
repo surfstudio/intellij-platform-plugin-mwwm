@@ -1,24 +1,18 @@
-import 'package:flutter/material.dart' hide Action;
+import 'package:flutter/widgets.dart' hide Action;
 import 'package:mwwm/mwwm.dart';
 
 /// [WidgetModel] for [$Temp$Screen]
-class $Temp$WidgetModel extends WidgetModel {
-  NavigatorState _navigator;
-  GlobalKey<ScaffoldState> scaffoldKey;
+class $Temp$Wm extends WidgetModel {
+  final NavigatorState navigator;
 
-  $Temp$WidgetModel(
+  $Temp$Wm(
       WidgetModelDependencies dependencies,
-      this._navigator,
-      this.scaffoldKey,
+      this.navigator,
       ) : super(dependencies);
 
   @override
   void onLoad() {
     super.onLoad();
-  }
-
-  @override
-  void onBind() {
-    super.onBind();
+    //TODO
   }
 }

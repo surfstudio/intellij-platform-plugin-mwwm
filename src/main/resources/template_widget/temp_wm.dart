@@ -1,22 +1,16 @@
-import 'package:flutter/material.dart' hide Action;
+import 'package:flutter/widgets.dart' hide Action;
 import 'package:mwwm/mwwm.dart';
 
 /// [WidgetModel] for [$Temp$Widget]
-class $Temp$WidgetModel extends WidgetModel {
-  NavigatorState _navigator;
+class $Temp$Wm extends WidgetModel {
+  final NavigatorState navigator;
 
-  $Temp$WidgetModel(
-      WidgetModelDependencies dependencies,
-      this._navigator,
-      ) : super(dependencies);
+  $Temp$Wm(WidgetModelDependencies dependencies,
+      this.navigator,) : super(dependencies);
 
   @override
   void onLoad() {
     super.onLoad();
-  }
-
-  @override
-  void onBind() {
-    super.onBind();
+    //TODO
   }
 }

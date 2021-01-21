@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mwwm/mwwm.dart';
-import 'di/temp_wm_builder.dart';
-import 'temp_wm.dart';
+import 'package:surf_mwwm/surf_mwwm.dart';
 
-/// Widget
-class $Temp$Widget extends CoreMwwmWidget {
-  $Temp$Widget([
-    WidgetModelBuilder widgetModelBuilder = create$Temp$WidgetModel,
-  ]) : super(
-    widgetModelBuilder: widgetModelBuilder,
+/// Widget [$Temp$Widget]
+class $Temp$Widget extends MwwmWidget<$Temp$Component> {
+  $Temp$Widget({
+    Key key,
+  }) : super(
+    key: key,
+    widgetModelBuilder: create$Temp$Wm,
+    dependenciesBuilder: (context) => $Temp$Component(context),
+    widgetStateBuilder: () => _$Temp$WidgetState(),
   );
-
-  @override
-  State<StatefulWidget> createState() {
-    return _$Temp$WidgetState();
-  }
 }
 
-class _$Temp$WidgetState extends WidgetState<$Temp$WidgetModel> {
+class _$Temp$WidgetState extends WidgetState<$Temp$Wm> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("temp screen"),
+    return Center(
+      child: Text("Template"),
     );
   }
 }
