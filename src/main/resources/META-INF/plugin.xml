@@ -9,7 +9,7 @@
 
     <description>
         <![CDATA[
-      TemplateTemplateTemplateTemplateTemplateTemplate.
+      TemplateTemplateTemplateTemplateTemplateTemplate - 40 symbols.
     ]]>
     </description>
     <change-notes>
@@ -21,9 +21,6 @@
       </ul>
     ]]>
     </change-notes>
-
-    <!-- Declare the default resource location for localizing menu strings -->
-    <!--    <resource-bundle>messages.BasicActionsBundle</resource-bundle>-->
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
@@ -43,7 +40,7 @@
         <group id="org.jetbrains.plugins.template.action.DynamicActionGroup"
                class="org.jetbrains.plugins.template.action.DynamicActionGroup"
                popup="true"
-               text="MWWM"
+               text="Surf MWWM"
                icon="SdkIcons.mwwm_icon_mini_size"
                description="Create MWWM file">
             <add-to-group group-id="InspectCodeActionInPopupMenus"
