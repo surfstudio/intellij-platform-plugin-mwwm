@@ -1,19 +1,54 @@
 <idea-plugin>
     <id>org.jetbrains.plugins.template</id>
-    <name>Template</name>
-    <vendor>JetBrains</vendor>
+    <name>Template MWWM</name>
+    <vendor>SurfGear</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
+    <description>
+        <![CDATA[
+      TemplateTemplateTemplateTemplateTemplateTemplate.
+    ]]>
+    </description>
+    <change-notes>
+        <![CDATA[
+      <ul>
+        <li><b>2.0.0</b> TemplateTemplateTemplateTemplateTemplateTemplate.</li>
+        <li><b>1.1</b> TemplateTemplateTemplateTemplateTemplateTemplate.</li>
+        <li><b>1.0</b> Release 2019.2 and earlier.</li>
+      </ul>
+    ]]>
+    </change-notes>
+
+    <!-- Declare the default resource location for localizing menu strings -->
+    <!--    <resource-bundle>messages.BasicActionsBundle</resource-bundle>-->
+
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
-        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
+        <applicationService
+            serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
+        <projectService
+            serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
         <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+
+    <actions>
+        <group id="org.intellij.sdk.action.GroupedActions"/>
+
+        <group id="org.jetbrains.plugins.template.action.DynamicActionGroup"
+               class="org.jetbrains.plugins.template.action.DynamicActionGroup"
+               popup="true"
+               text="MWWM"
+               icon="SdkIcons.mwwm_icon_mini_size"
+               description="Create MWWM file">
+            <add-to-group group-id="InspectCodeActionInPopupMenus"
+                          anchor="after"
+                          relative-to-action="org.intellij.sdk.action.GroupedActions"/>
+        </group>
+    </actions>
 </idea-plugin>
