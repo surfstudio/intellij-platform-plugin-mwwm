@@ -11,5 +11,5 @@ object SdkIcons {
 
     @JvmField
     val mwwm_icon_standart_size = IconLoader.getIcon(
-            File.separator + "icons" + File.separator + "mwwm_standart_size.svg", javaClass)
+            File.separator + "icons" + File.separator + "pluginIcon.svg", javaClass)
 }
