@@ -1,13 +1,15 @@
-package org.jetbrains.plugins.template.service
+package com.github.plaginmwwm.service
 
+import com.github.plaginmwwm.common.CommonString
+import com.github.plaginmwwm.common.FileNaming
+import com.github.plaginmwwm.common.SpecialFileNamingEnum
+import com.github.plaginmwwm.common.path.RecourseScreen
+import com.github.plaginmwwm.common.path.RecourseWidget
 import java.io.IOException
-import org.jetbrains.plugins.template.common.path.RecourseScreen
-import org.jetbrains.plugins.template.common.SpecialFileNamingEnum
-import org.jetbrains.plugins.template.common.path.RecourseWidget
+
 import java.lang.StringBuilder
-import org.jetbrains.plugins.template.common.CommonString
+
 import java.io.FileWriter
-import org.jetbrains.plugins.template.common.FileNaming
 import java.io.File
 import java.util.*
 import kotlin.collections.HashMap
@@ -176,9 +178,9 @@ class TemplateGenerate {
     }
 
     /// Имя файла
-    private fun getPathName(nameClass: String, naming: SpecialFileNamingEnum): String {
-        var nameClass = nameClass
-        nameClass = getNameFile(nameClass)
+    private fun getPathName(nameClazz: String, naming: SpecialFileNamingEnum): String {
+
+        val nameClass = getNameFile(nameClazz)
         return when (naming) {
             SpecialFileNamingEnum.screen -> nameClass + FileNaming.screen
             SpecialFileNamingEnum.widget -> nameClass + FileNaming.widget

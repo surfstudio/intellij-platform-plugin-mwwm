@@ -1,4 +1,4 @@
-package com.github.evoswork.plaginmwwm
+package com.github.plaginmwwm
 
 import com.intellij.AbstractBundle
 import org.jetbrains.annotations.NonNls

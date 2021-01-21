@@ -24,21 +24,21 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
-            serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
+            serviceImplementation="com.github.plaginmwwm.services.MyApplicationService"/>
         <projectService
-            serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
+            serviceImplementation="com.github.plaginmwwm.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
+        <listener class="com.github.plaginmwwm.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
     <actions>
         <group id="org.intellij.sdk.action.GroupedActions"/>
 
-        <group id="org.jetbrains.plugins.template.action.DynamicActionGroup"
-               class="org.jetbrains.plugins.template.action.DynamicActionGroup"
+        <group id="com.github.plaginmwwm.action.DynamicActionGroup"
+               class="com.github.plaginmwwm.action.DynamicActionGroup"
                popup="true"
                text="Surf MWWM"
                icon="SdkIcons.mwwm_icon_mini_size"

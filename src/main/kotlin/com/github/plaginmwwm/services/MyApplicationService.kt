@@ -1,6 +1,6 @@
-package com.github.evoswork.plaginmwwm.services
+package com.github.plaginmwwm.services
 
-import com.github.evoswork.plaginmwwm.MyBundle
+import com.github.plaginmwwm.MyBundle
 
 class MyApplicationService {
 

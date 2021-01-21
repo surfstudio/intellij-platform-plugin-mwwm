@@ -1,7 +1,7 @@
-package org.jetbrains.plugins.template.action
+package com.github.plaginmwwm.action
 
+import com.github.plaginmwwm.service.TemplateGenerate
 import com.intellij.openapi.actionSystem.AnAction
-import org.jetbrains.plugins.template.service.TemplateGenerate
 import com.intellij.openapi.actionSystem.AnActionEvent
 import icons.SdkIcons
 import com.intellij.openapi.vfs.VirtualFile

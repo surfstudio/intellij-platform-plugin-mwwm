@@ -1,7 +1,7 @@
-package org.jetbrains.plugins.template.common.path
+package com.github.plaginmwwm.common.path
 
-import org.jetbrains.plugins.template.common.CommonString
-import org.jetbrains.plugins.template.common.FileNaming
+import com.github.plaginmwwm.common.CommonString
+import com.github.plaginmwwm.common.FileNaming
 import java.io.File
 
 /// Путь до ресурсов Screen

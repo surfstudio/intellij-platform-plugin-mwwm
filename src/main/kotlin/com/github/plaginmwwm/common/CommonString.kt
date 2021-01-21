@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.common
+package com.github.plaginmwwm.common
 
 /// Ресурсы строк
 object CommonString {

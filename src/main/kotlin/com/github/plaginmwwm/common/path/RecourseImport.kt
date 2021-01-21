@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.common.path
+package com.github.plaginmwwm.common.path
 
 /// Получение пути импорта в файле дарт
 object RecourseImport {
