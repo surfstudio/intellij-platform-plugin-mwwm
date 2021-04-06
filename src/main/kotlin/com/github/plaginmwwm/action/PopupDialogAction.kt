@@ -1,5 +1,6 @@
 package com.github.plaginmwwm.action
 
+import com.github.plaginmwwm.common.TypeTemplate
 import com.github.plaginmwwm.service.TemplateGenerate
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -27,7 +28,7 @@ class PopupDialogAction
  * @param icon        The icon to be used with the menu item.
  */(
         text: String?, description: String?,
-        icon: Icon?, var isScreen: Boolean,
+        icon: Icon?, var typeTemplate: TypeTemplate,
 ) : AnAction(text, description, icon) {
     val generate = TemplateGenerate()
 
@@ -39,8 +40,16 @@ class PopupDialogAction
      * @param event Event received when the associated menu item is chosen.
      */
     override fun actionPerformed(event: AnActionEvent) {
+
+
         val res = Messages.showInputDialog(
-                if (isScreen) "Create Screen" else "Create Widget",
+                when (typeTemplate) {
+                    TypeTemplate.widget -> "Create Widget"
+                    TypeTemplate.screen -> "Create Screen"
+                    TypeTemplate.coreMwwm -> "Create CoreMwwm"
+                },
+
+//                if (isScreen) "Create Screen" else "Create Widget",
                 "Surf plugin",
                 SdkIcons.mwwm_icon_standart_size,
         )
@@ -53,7 +62,7 @@ class PopupDialogAction
             val path = getDirectory(file)
             val pathDirectory = getDirectory(fileDirectory)
             try {
-                generate.run(path, pathDirectory, res, isScreen)
+                generate.run(path, pathDirectory, res, typeTemplate)
             } catch (e: IOException) {
                 e.printStackTrace()
             }

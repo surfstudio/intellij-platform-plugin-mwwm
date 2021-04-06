@@ -3,12 +3,12 @@ import 'package:surf_injector/surf_injector.dart';
 import 'package:surf_mwwm/surf_mwwm.dart';
 
 /// di for [$Temp$WidgetModel]
-class $Temp$Component extends WidgetComponent {
+class $Temp$Component implements WidgetComponent {
   $Temp$Component(BuildContext context) : super(context) {
     final parent = Injector.of<AppComponent>(context).component;
     _navigator = Navigator.of(context);
-    _messageController = MaterialMessageController(scaffoldKey);
-    _dialogController = DefaultDialogController(scaffoldKey);
+    _messageController = MaterialMessageController.from(context);
+    _dialogController = DefaultDialogController.from(context);
 
     _wmDependencies = WidgetModelDependencies(
       errorHandler: StandardErrorHandler(
