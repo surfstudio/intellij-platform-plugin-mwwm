@@ -2,13 +2,14 @@ import 'package:flutter/widgets.dart' hide Action;
 import 'package:mwwm/mwwm.dart';
 
 /// [WidgetModel] for [$Temp$Screen]
-class $Temp$Wm extends WidgetModel {
-  final NavigatorState navigator;
+class $Temp$WidgetModel extends WidgetModel {
 
-  $Temp$Wm(
+  $Temp$WidgetModel(
       WidgetModelDependencies dependencies,
       this.navigator,
       ) : super(dependencies);
+
+  final NavigatorState navigator;
 
   @override
   void onLoad() {
