@@ -34,10 +34,10 @@ class TemplateGenerate {
     /// Сгенерировать файлы для Screen
     @Throws(IOException::class)
     private fun generateScreen(path: String, nameClass: String) {
-        val templateScreenText: String = getTextFile(RecourseScreen.screen)
-        val templateWmText: String = getTextFile(RecourseScreen.wm)
-        val templateRouteText: String = getTextFile(RecourseScreen.route)
-        val templateDiText: String = getTextFile(RecourseScreen.di)
+        val templateScreenText: String = readFile(RecourseScreen.screen)
+        val templateWmText: String = readFile(RecourseScreen.wm)
+        val templateRouteText: String = readFile(RecourseScreen.route)
+        val templateDiText: String = readFile(RecourseScreen.di)
 
         val hashMapNameFile: MutableMap<SpecialFileNamingEnum, String> = HashMap()
 
@@ -48,16 +48,16 @@ class TemplateGenerate {
                 getPathName(nameClass, SpecialFileNamingEnum.route)
         hashMapNameFile[SpecialFileNamingEnum.di] = getPathName(nameClass, SpecialFileNamingEnum.di)
 
-        val screenText: String = createFileDart(
+        val screenText: String = generateTextFileDart(
                 templateScreenText, nameClass, hashMapNameFile,
                 path
         )
-        val wmText: String = createFileDart(templateWmText, nameClass, hashMapNameFile, path)
-        val routeText: String = createFileDart(
+        val wmText: String = generateTextFileDart(templateWmText, nameClass, hashMapNameFile, path)
+        val routeText: String = generateTextFileDart(
                 templateRouteText, nameClass, hashMapNameFile,
                 path
         )
-        val diText: String = createFileDart(templateDiText, nameClass, hashMapNameFile, path)
+        val diText: String = generateTextFileDart(templateDiText, nameClass, hashMapNameFile, path)
 
         writeFile(
                 path, hashMapNameFile[SpecialFileNamingEnum.screen],
@@ -80,9 +80,9 @@ class TemplateGenerate {
     /// Сгенерировать файлы для Widget
     @Throws(IOException::class)
     private fun generateWidget(path: String, nameClass: String) {
-        val templateWidgetText = getTextFile(RecourseWidget.widget)
-        val templateWmText = getTextFile(RecourseWidget.wm)
-        val templateDiText = getTextFile(RecourseWidget.di)
+        val templateWidgetText = readFile(RecourseWidget.widget)
+        val templateWmText = readFile(RecourseWidget.wm)
+        val templateDiText = readFile(RecourseWidget.di)
 
         val hashMapNameFile: HashMap<SpecialFileNamingEnum, String> = HashMap()
 
@@ -91,13 +91,13 @@ class TemplateGenerate {
         hashMapNameFile[SpecialFileNamingEnum.di] = getPathName(nameClass, SpecialFileNamingEnum.di)
         hashMapNameFile[SpecialFileNamingEnum.wm] = getPathName(nameClass, SpecialFileNamingEnum.wm)
 
-        val screenText: String = createFileDart(
+        val screenText: String = generateTextFileDart(
                 templateWidgetText, nameClass, hashMapNameFile,
                 path
         )
-        val wmText: String = createFileDart(templateWmText, nameClass, hashMapNameFile, path)
+        val wmText: String = generateTextFileDart(templateWmText, nameClass, hashMapNameFile, path)
 
-        val diText: String = createFileDart(templateDiText, nameClass, hashMapNameFile, path)
+        val diText: String = generateTextFileDart(templateDiText, nameClass, hashMapNameFile, path)
 
         writeFile(
                 path, hashMapNameFile[SpecialFileNamingEnum.widget],
@@ -116,24 +116,24 @@ class TemplateGenerate {
     /// Сгенерировать файлы для CoreMwwm
     @Throws(IOException::class)
     private fun generateCoreMwwm(path: String, nameClass: String) {
-        val templateWidgetText = getTextFile(RecourseCoreMwwm.widget)
-        val templateWmText = getTextFile(RecourseCoreMwwm.wm)
-        val templateDiText = getTextFile(RecourseCoreMwwm.di)
+        val templateWidgetText = readFile(RecourseCoreMwwm.widget)
+        val templateWmText = readFile(RecourseCoreMwwm.wm)
+        val templateDiText = readFile(RecourseCoreMwwm.di)
 
         val hashMapNameFile: HashMap<SpecialFileNamingEnum, String> = HashMap()
 
         hashMapNameFile[SpecialFileNamingEnum.widget] =
-                getPathName(nameClass, SpecialFileNamingEnum.widget)
+                getPathName(nameClass, SpecialFileNamingEnum.widgetOnlyName)
         hashMapNameFile[SpecialFileNamingEnum.di] = getPathName(nameClass, SpecialFileNamingEnum.di)
         hashMapNameFile[SpecialFileNamingEnum.wm] = getPathName(nameClass, SpecialFileNamingEnum.wm)
 
-        val screenText: String = createFileDart(
+        val screenText: String = generateTextFileDart(
                 templateWidgetText, nameClass, hashMapNameFile,
                 path
         )
-        val wmText: String = createFileDart(templateWmText, nameClass, hashMapNameFile, path)
+        val wmText: String = generateTextFileDart(templateWmText, nameClass, hashMapNameFile, path)
 
-        val diText: String = createFileDart(templateDiText, nameClass, hashMapNameFile, path)
+        val diText: String = generateTextFileDart(templateDiText, nameClass, hashMapNameFile, path)
 
         writeFile(
                 path, hashMapNameFile[SpecialFileNamingEnum.widget],
@@ -151,7 +151,7 @@ class TemplateGenerate {
 
     /// Получаем содержимое файла в виде строки
     @Throws(IOException::class)
-    private fun getTextFile(path: String): String {
+    private fun readFile(path: String): String {
         val stringBuffer = StringBuilder()
         val inputStream = this.javaClass
                 .classLoader
@@ -167,7 +167,7 @@ class TemplateGenerate {
     }
 
     /// создаём текст файла дарт
-    private fun createFileDart(
+    private fun generateTextFileDart(
             textFile: String, nameClass: String,
             hashMapPath: Map<SpecialFileNamingEnum, String>, path: String
     ): String {
@@ -225,7 +225,7 @@ class TemplateGenerate {
             SpecialFileNamingEnum.wm -> nameClass + FileNaming.wm
             SpecialFileNamingEnum.route -> nameClass + FileNaming.route
             SpecialFileNamingEnum.di -> nameClass + FileNaming.di
-            else -> ""
+            SpecialFileNamingEnum.widgetOnlyName -> nameClass + FileNaming.onlyFile
         }
     }
 

@@ -6,7 +6,7 @@ import java.io.File
 
 object RecourseCoreMwwm {
     private const val baseResources = "template_core_widget"
-    val widget = baseResources + File.separator + CommonString.temp + FileNaming.widget
+    val widget = baseResources + File.separator + CommonString.temp + FileNaming.onlyFile
     val wm = baseResources + File.separator + CommonString.temp + FileNaming.wm
     val di = baseResources + File.separator + CommonString.di + File.separator + CommonString.temp +
             FileNaming.di

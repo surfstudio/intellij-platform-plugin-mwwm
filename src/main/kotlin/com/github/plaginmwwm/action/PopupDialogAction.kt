@@ -27,8 +27,8 @@ class PopupDialogAction
  * @param description The description of the menu item.
  * @param icon        The icon to be used with the menu item.
  */(
-        text: String?, description: String?,
-        icon: Icon?, var typeTemplate: TypeTemplate,
+    text: String?, description: String?,
+    icon: Icon?, var typeTemplate: TypeTemplate,
 ) : AnAction(text, description, icon) {
     val generate = TemplateGenerate()
 
@@ -42,21 +42,21 @@ class PopupDialogAction
     override fun actionPerformed(event: AnActionEvent) {
 
 
-        val res = Messages.showInputDialog(
-                when (typeTemplate) {
-                    TypeTemplate.widget -> "Create Widget"
-                    TypeTemplate.screen -> "Create Screen"
-                    TypeTemplate.coreMwwm -> "Create CoreMwwm"
-                },
+        val titleDialog: String = when (typeTemplate) {
+            TypeTemplate.widget -> "Create Widget"
+            TypeTemplate.screen -> "Create Screen"
+            TypeTemplate.coreMwwm -> "Create CoreMwwm"
+        }
 
-//                if (isScreen) "Create Screen" else "Create Widget",
-                "Surf plugin",
-                SdkIcons.mwwm_icon_standart_size,
+        val res = Messages.showInputDialog(
+            titleDialog,
+            "Surf plugin",
+            SdkIcons.mwwm_icon_standart_size,
         )
         val file = event.dataContext
-                .getData(PlatformDataKeys.VIRTUAL_FILE)
+            .getData(PlatformDataKeys.VIRTUAL_FILE)
         val fileDirectory = event.dataContext
-                .getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
+            .getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
 
         if (file != null && fileDirectory != null && res != null) {
             val path = getDirectory(file)
@@ -72,7 +72,7 @@ class PopupDialogAction
     private fun getDirectory(file: VirtualFile): String {
         return if (!file.isDirectory) {
             file.parent
-                    .path
+                .path
         } else file.path
     }
     //    private ge
