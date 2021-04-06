@@ -1,5 +1,6 @@
 package com.github.plaginmwwm.action
 
+import com.github.plaginmwwm.common.TypeTemplate
 import com.github.plaginmwwm.service.TemplateGenerate
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -26,8 +27,8 @@ class PopupDialogAction
  * @param description The description of the menu item.
  * @param icon        The icon to be used with the menu item.
  */(
-        text: String?, description: String?,
-        icon: Icon?, var isScreen: Boolean,
+    text: String?, description: String?,
+    icon: Icon?, var typeTemplate: TypeTemplate,
 ) : AnAction(text, description, icon) {
     val generate = TemplateGenerate()
 
@@ -39,21 +40,29 @@ class PopupDialogAction
      * @param event Event received when the associated menu item is chosen.
      */
     override fun actionPerformed(event: AnActionEvent) {
+
+
+        val titleDialog: String = when (typeTemplate) {
+            TypeTemplate.widget -> "Create Widget"
+            TypeTemplate.screen -> "Create Screen"
+            TypeTemplate.coreMwwm -> "Create CoreMwwm"
+        }
+
         val res = Messages.showInputDialog(
-                if (isScreen) "Create Screen" else "Create Widget",
-                "Surf plugin",
-                SdkIcons.mwwm_icon_standart_size,
+            titleDialog,
+            "Surf plugin",
+            SdkIcons.mwwm_icon_standart_size,
         )
         val file = event.dataContext
-                .getData(PlatformDataKeys.VIRTUAL_FILE)
+            .getData(PlatformDataKeys.VIRTUAL_FILE)
         val fileDirectory = event.dataContext
-                .getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
+            .getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
 
         if (file != null && fileDirectory != null && res != null) {
             val path = getDirectory(file)
             val pathDirectory = getDirectory(fileDirectory)
             try {
-                generate.run(path, pathDirectory, res, isScreen)
+                generate.run(path, pathDirectory, res, typeTemplate)
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -63,7 +72,7 @@ class PopupDialogAction
     private fun getDirectory(file: VirtualFile): String {
         return if (!file.isDirectory) {
             file.parent
-                    .path
+                .path
         } else file.path
     }
     //    private ge

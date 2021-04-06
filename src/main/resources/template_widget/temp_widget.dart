@@ -9,13 +9,13 @@ class $Temp$Widget extends MwwmWidget<$Temp$Component> {
     Key key,
   }) : super(
     key: key,
-    widgetModelBuilder: create$Temp$Wm,
+    widgetModelBuilder: create$Temp$WidgetModel,
     dependenciesBuilder: (context) => $Temp$Component(context),
     widgetStateBuilder: () => _$Temp$WidgetState(),
   );
 }
 
-class _$Temp$WidgetState extends WidgetState<$Temp$Wm> {
+class _$Temp$WidgetState extends WidgetState<$Temp$WidgetModel> {
   @override
   Widget build(BuildContext context) {
     return Center(

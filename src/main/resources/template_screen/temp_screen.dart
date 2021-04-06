@@ -8,20 +8,17 @@ class $Temp$Screen extends MwwmWidget<$Temp$Component> {
     Key key,
   }) : super(
     key: key,
-    widgetModelBuilder: create$Temp$Wm,
+    widgetModelBuilder: create$Temp$WidgetModel,
     dependenciesBuilder: (context) => $Temp$Component(context),
     widgetStateBuilder: () => _$Temp$ScreenState(),
   );
 }
 
-class _$Temp$ScreenState extends WidgetState<$Temp$Wm> {
+class _$Temp$ScreenState extends WidgetState<$Temp$WidgetModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: Injector
-          .of<AppComponent>(context)
-          .component
-          .scaffoldKey,
+      key: Injector.of<$Temp$Component>(context).component.scaffoldKey,
       body: Center(
         child: Text("Template screen"),
       ),
