@@ -2,5 +2,5 @@ package com.github.plaginmwwm.common
 
 /// варианты именований
 enum class SpecialFileNamingEnum {
-    widget, screen, wm, route, di, widgetOnlyName
+    widget, wm, route, di
 }/// варианты именований

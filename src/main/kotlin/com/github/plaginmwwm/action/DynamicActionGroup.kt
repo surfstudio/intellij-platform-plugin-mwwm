@@ -25,6 +25,7 @@ class DynamicActionGroup : ActionGroup() {
      * [PopupDialogAction] class.
      */
     override fun getChildren(e: AnActionEvent?): Array<AnAction> {
+
         return arrayOf(
                 PopupDialogAction("Create widget", "Dynamic Action Demo", null, TypeTemplate.widget),
                 PopupDialogAction("Create screen", "Dynamic Action Demo", null, TypeTemplate.screen),

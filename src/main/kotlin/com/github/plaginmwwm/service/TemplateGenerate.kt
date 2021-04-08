@@ -26,8 +26,21 @@ class TemplateGenerate {
             TypeTemplate.widget -> generateWidget(path, nameClass)
             TypeTemplate.screen -> generateScreen(path, nameClass)
             TypeTemplate.coreMwwm -> generateCoreMwwm(path, nameClass)
+//            TypeTemplate.widget -> gen(path, nameClass)
+//            TypeTemplate.screen -> gen(path, nameClass)
+//            TypeTemplate.coreMwwm -> gen(path, nameClass)
         }
     }
+
+    @Throws(IOException::class)
+    private  fun gen(path: String, nameClass: String){
+        print("--->>>\n");
+        print(path);
+        print("\n--->>>\n");
+        print(nameClass);
+        print("\n--->>>\n");
+    }
+
 
     /// Сгенерировать файлы для Screen
     @Throws(IOException::class)
@@ -39,7 +52,7 @@ class TemplateGenerate {
 
         val hashMapNameFile: MutableMap<SpecialFileNamingEnum, String> = HashMap()
 
-        hashMapNameFile[SpecialFileNamingEnum.screen] = creatingFileName(nameClass, SpecialFileNamingEnum.screen)
+        hashMapNameFile[SpecialFileNamingEnum.widget] = creatingFileName(nameClass, SpecialFileNamingEnum.widget)
         hashMapNameFile[SpecialFileNamingEnum.wm] = creatingFileName(nameClass, SpecialFileNamingEnum.wm)
         hashMapNameFile[SpecialFileNamingEnum.route] = creatingFileName(nameClass, SpecialFileNamingEnum.route)
         hashMapNameFile[SpecialFileNamingEnum.di] = creatingFileName(nameClass, SpecialFileNamingEnum.di)
@@ -49,7 +62,7 @@ class TemplateGenerate {
         val routeText: String = generateTextFileDart(templateRouteText, nameClass, hashMapNameFile, path)
         val diText: String = generateTextFileDart(templateDiText, nameClass, hashMapNameFile, path)
 
-        writeFile(path, hashMapNameFile[SpecialFileNamingEnum.screen], SpecialFileNamingEnum.screen, screenText)
+        writeFile(path, hashMapNameFile[SpecialFileNamingEnum.widget], SpecialFileNamingEnum.widget, screenText)
         writeFile(path, hashMapNameFile[SpecialFileNamingEnum.wm], SpecialFileNamingEnum.wm, wmText)
         writeFile(path, hashMapNameFile[SpecialFileNamingEnum.route], SpecialFileNamingEnum.route, routeText)
         writeFile(path, hashMapNameFile[SpecialFileNamingEnum.di], SpecialFileNamingEnum.di, diText)
@@ -58,6 +71,9 @@ class TemplateGenerate {
     /// Сгенерировать файлы для Widget
     @Throws(IOException::class)
     private fun generateWidget(path: String, nameClass: String) {
+        println(RecourseWidget.widget)
+        println(RecourseWidget.wm)
+        println(RecourseWidget.di)
         val templateWidgetText = readFile(RecourseWidget.widget)
         val templateWmText = readFile(RecourseWidget.wm)
         val templateDiText = readFile(RecourseWidget.di)
@@ -87,7 +103,7 @@ class TemplateGenerate {
         val hashMapNameFile: HashMap<SpecialFileNamingEnum, String> = HashMap()
 
         hashMapNameFile[SpecialFileNamingEnum.widget] =
-            creatingFileName(nameClass, SpecialFileNamingEnum.widgetOnlyName)
+            creatingFileName(nameClass, SpecialFileNamingEnum.widget)
         hashMapNameFile[SpecialFileNamingEnum.di] = creatingFileName(nameClass, SpecialFileNamingEnum.di)
         hashMapNameFile[SpecialFileNamingEnum.wm] = creatingFileName(nameClass, SpecialFileNamingEnum.wm)
 

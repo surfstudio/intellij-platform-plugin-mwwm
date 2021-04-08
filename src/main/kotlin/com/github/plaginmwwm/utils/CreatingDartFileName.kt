@@ -10,12 +10,10 @@ fun creatingFileName(nameClazz: String, naming: SpecialFileNamingEnum): String {
 
     val nameClass = getNameFile(nameClazz)
     return when (naming) {
-        SpecialFileNamingEnum.screen -> nameClass + FileNaming.screen
         SpecialFileNamingEnum.widget -> nameClass + FileNaming.widget
         SpecialFileNamingEnum.wm -> nameClass + FileNaming.wm
         SpecialFileNamingEnum.route -> nameClass + FileNaming.route
         SpecialFileNamingEnum.di -> nameClass + FileNaming.di
-        SpecialFileNamingEnum.widgetOnlyName -> nameClass + FileNaming.onlyName
     }
 }
 

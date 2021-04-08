@@ -27,10 +27,9 @@ class PopupDialogAction
  * @param description The description of the menu item.
  * @param icon        The icon to be used with the menu item.
  */(
-    text: String?, description: String?,
-    icon: Icon?, var typeTemplate: TypeTemplate,
+    text: String?, description: String?, icon: Icon?, var typeTemplate: TypeTemplate,
 ) : AnAction(text, description, icon) {
-    val generate = TemplateGenerate()
+    private val generate = TemplateGenerate()
 
     /**
      * Gives the user feedback when the dynamic action menu is chosen.
