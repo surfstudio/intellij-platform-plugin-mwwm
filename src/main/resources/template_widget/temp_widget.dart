@@ -3,19 +3,19 @@ import 'package:flutter/widgets.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:surf_mwwm/surf_mwwm.dart';
 
-/// Widget [$Temp$Widget]
-class $Temp$Widget extends MwwmWidget<$Temp$Component> {
-  $Temp$Widget({
+/// Widget [$Template$Widget]
+class $Template$Widget extends MwwmWidget<$Template$Component> {
+  $Template$Widget({
     Key key,
   }) : super(
     key: key,
-    widgetModelBuilder: create$Temp$WidgetModel,
-    dependenciesBuilder: (context) => $Temp$Component(context),
-    widgetStateBuilder: () => _$Temp$WidgetState(),
+    widgetModelBuilder: create$Template$WidgetModel,
+    dependenciesBuilder: (context) => $Template$Component(context),
+    widgetStateBuilder: () => _$Template$WidgetState(),
   );
 }
 
-class _$Temp$WidgetState extends WidgetState<$Temp$WidgetModel> {
+class _$Template$WidgetState extends WidgetState<$Template$WidgetModel> {
   @override
   Widget build(BuildContext context) {
     return Center(

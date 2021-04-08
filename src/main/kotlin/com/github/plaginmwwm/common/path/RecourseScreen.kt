@@ -6,10 +6,9 @@ import java.io.File
 
 /// Путь до ресурсов Screen
 object RecourseScreen {
-    private const val baseResources = "template_screen"
+    private val baseResources = "mwwm_generator" + File.separator + "templates" + File.separator + "surf_mwwm_screen"
     val screen = baseResources + File.separator + CommonString.temp + FileNaming.screen
     val wm = baseResources + File.separator + CommonString.temp + FileNaming.wm
     val route = baseResources + File.separator + CommonString.temp + FileNaming.route
-    val di = baseResources + File.separator + CommonString.di + File.separator + CommonString.temp +
-            FileNaming.di
+    val di = baseResources + File.separator + CommonString.di + File.separator + CommonString.temp + FileNaming.di
 }

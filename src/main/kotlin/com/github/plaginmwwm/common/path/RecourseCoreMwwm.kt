@@ -5,9 +5,8 @@ import com.github.plaginmwwm.common.FileNaming
 import java.io.File
 
 object RecourseCoreMwwm {
-    private const val baseResources = "template_core_widget"
-    val widget = baseResources + File.separator + CommonString.temp + FileNaming.onlyFile
+    private val baseResources = "mwwm_generator" + File.separator + "templates" + File.separator + "mwwm_widget"
+    val widget = baseResources + File.separator + CommonString.temp + FileNaming.onlyName
     val wm = baseResources + File.separator + CommonString.temp + FileNaming.wm
-    val di = baseResources + File.separator + CommonString.di + File.separator + CommonString.temp +
-            FileNaming.di
+    val di = baseResources + File.separator + CommonString.di + File.separator + CommonString.temp + FileNaming.di
 }

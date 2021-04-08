@@ -3,8 +3,8 @@ import 'package:surf_injector/surf_injector.dart';
 import 'package:surf_mwwm/surf_mwwm.dart';
 
 /// di for [$Temp$WidgetModel]
-class $Temp$Component implements WidgetComponent {
-  $Temp$Component(BuildContext context) : super(context) {
+class $Template$Component implements WidgetComponent {
+  $Template$Component(BuildContext context) : super(context) {
     final parent = Injector.of<AppComponent>(context).component;
     _navigator = Navigator.of(context);
     _messageController = MaterialMessageController.from(context);
@@ -25,10 +25,10 @@ class $Temp$Component implements WidgetComponent {
   WidgetModelDependencies _wmDependencies;
 }
 
-/// builder by $Temp$WidgetModel
-$Temp$WidgetModel create$Temp$WidgetModel(BuildContext context) {
-  final component = Injector.of<$Temp$Component>(context).component;
-  return $Temp$WidgetModel(
+/// builder by $Template$WidgetModel
+$Template$WidgetModel create$Template$WidgetModel(BuildContext context) {
+  final component = Injector.of<$Template$Component>(context).component;
+  return $Template$WidgetModel(
     component._wmDependencies,
     component._navigator,
   );

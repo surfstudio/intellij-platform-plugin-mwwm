@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart' hide Action;
 import 'package:mwwm/mwwm.dart';
 
-/// [WidgetModel] for [$Temp$Widget]
-class $Temp$WidgetModel extends WidgetModel {
+/// [WidgetModel] for [$Template$Widget]
+class $Template$WidgetModel extends WidgetModel {
 
-  $Temp$WidgetModel(
+  $Template$WidgetModel(
       WidgetModelDependencies dependencies,
       this.navigator,
       ) : super(dependencies);
