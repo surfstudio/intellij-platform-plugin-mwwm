@@ -1,7 +1,7 @@
 package com.github.plaginmwwm.common
 
 /// Ресурсы строк
-object CommonString {
+object CommonSearchString {
     /// паттерны для замены в файлах дарт
     const val regexSearchWord = "Template"
     const val regexImportScreen = "\$import_screen$"

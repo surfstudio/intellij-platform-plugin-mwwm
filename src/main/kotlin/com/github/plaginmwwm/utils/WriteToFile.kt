@@ -1,6 +1,6 @@
 package com.github.plaginmwwm.utils
 
-import com.github.plaginmwwm.common.CommonString
+import com.github.plaginmwwm.common.CommonSearchString
 import com.github.plaginmwwm.common.SpecialFileNamingEnum
 import java.io.File
 import java.io.FileWriter
@@ -14,7 +14,7 @@ fun writeFile(
     try {
         val file: File = if (namingEnum === SpecialFileNamingEnum.di) {
             File(
-                path + File.separator + CommonString.di + File.separator + nameFile
+                path + File.separator + CommonSearchString.di + File.separator + nameFile
             )
         } else {
             File(path + File.separator + nameFile)

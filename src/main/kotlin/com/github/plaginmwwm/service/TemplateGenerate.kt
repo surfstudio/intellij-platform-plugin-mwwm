@@ -10,8 +10,6 @@ import java.io.IOException
 
 import java.lang.StringBuilder
 
-import java.io.FileWriter
-import java.io.File
 import kotlin.collections.HashMap
 
 class TemplateGenerate {
@@ -147,15 +145,15 @@ class TemplateGenerate {
 //                pathSeparator + hashMapPath[SpecialFileNamingEnum.screen])
 //        val importWm = RecourseImport.getImport(
 //                pathSeparator + hashMapPath[SpecialFileNamingEnum.wm])
-        var text: String = textFile.replace(CommonString.regexSearchWord, nameClass)
+        var text: String = textFile.replace(CommonSearchString.regexSearchWord, nameClass)
         /// todo Для прописывания правильных импортов
 //        text = text.replace(CommonString.regexImportDi.toRegex(), importDi)
 //        text = text.replace(CommonString.regexImportScreen.toRegex(), importScreen)
 //        text = text.replace(CommonString.regexImportWM.toRegex(), importWm)
         /// todo заглушка, пока не решена проблема с импортами
-        text = text.replace(CommonString.regexImportDi.toRegex(), "")
-        text = text.replace(CommonString.regexImportScreen.toRegex(), "")
-        text = text.replace(CommonString.regexImportWM.toRegex(), "")
+        text = text.replace(CommonSearchString.regexImportDi.toRegex(), "")
+        text = text.replace(CommonSearchString.regexImportScreen.toRegex(), "")
+        text = text.replace(CommonSearchString.regexImportWM.toRegex(), "")
         return text
     }
 }
