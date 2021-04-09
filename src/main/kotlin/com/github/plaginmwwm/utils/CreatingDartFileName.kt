@@ -8,7 +8,7 @@ import java.util.*
 /// Имя файла
 fun creatingFileName(nameClazz: String, naming: SpecialFileNamingEnum): String {
 
-    val nameClass = getNameFile(nameClazz)
+    val nameClass = generateFileName(nameClazz)
     return when (naming) {
         SpecialFileNamingEnum.widget -> nameClass + FileNaming.widget
         SpecialFileNamingEnum.wm -> nameClass + FileNaming.wm
@@ -18,9 +18,9 @@ fun creatingFileName(nameClazz: String, naming: SpecialFileNamingEnum): String {
 }
 
 /// создаем имя файла дарт
-private fun getNameFile(nameFIle: String): String {
+private fun generateFileName(nameFile: String): String {
     val answer = StringBuilder()
-    val findUpper = nameFIle.toCharArray()
+    val findUpper = nameFile.toCharArray()
     var i = 0
     while (findUpper.size > i) {
         // пропускаем 1-й символ

@@ -4,12 +4,19 @@ import com.github.plaginmwwm.common.TypeTemplate
 import com.github.plaginmwwm.service.TemplateGenerate
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import icons.SdkIcons
-import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.actionSystem.PlatformDataKeys
+import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.ui.Messages
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.workspace.virtualFileUrl
+import icons.SdkIcons
+import java.io.File
+import java.io.FileWriter
 import java.io.IOException
 import javax.swing.Icon
+import com.intellij.openapi.roots.ProjectRootManager
+import com.intellij.openapi.vfs.LocalFileSystem
+
 
 /**
  * Action class to demonstrate how to interact with the IntelliJ Platform.
@@ -52,10 +59,16 @@ class PopupDialogAction
             "Surf plugin",
             SdkIcons.mwwm_icon_standart_size,
         )
-        val file = event.dataContext
-            .getData(PlatformDataKeys.VIRTUAL_FILE)
-        val fileDirectory = event.dataContext
-            .getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
+        /// todo delete отсюда
+        val file = event.dataContext.getData(PlatformDataKeys.VIRTUAL_FILE)
+        val fileDirectory = event.dataContext.getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
+
+
+        val str = fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates"
+        if (File(str).isDirectory) {
+            println("--->>> isDirectory")
+        }
+        /// todo delete  до сюда
 
         if (file != null && fileDirectory != null && res != null) {
             val path = getDirectory(file)
@@ -69,12 +82,13 @@ class PopupDialogAction
     }
 
     private fun getDirectory(file: VirtualFile): String {
-        return if (!file.isDirectory) {
-            file.parent
-                .path
-        } else file.path
+        return if (file.isDirectory) {
+            file.path
+        } else {
+            file.parent.path
+        }
     }
-    //    private ge
+
     /**
      * Determines whether this menu item is available for the current context.
      * Requires a project to be open.

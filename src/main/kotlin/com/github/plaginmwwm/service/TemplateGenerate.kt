@@ -24,6 +24,7 @@ class TemplateGenerate {
             TypeTemplate.widget -> generateWidget(path, nameClass)
             TypeTemplate.screen -> generateScreen(path, nameClass)
             TypeTemplate.coreMwwm -> generateCoreMwwm(path, nameClass)
+            /// todo delete
 //            TypeTemplate.widget -> gen(path, nameClass)
 //            TypeTemplate.screen -> gen(path, nameClass)
 //            TypeTemplate.coreMwwm -> gen(path, nameClass)
@@ -32,13 +33,12 @@ class TemplateGenerate {
 
     @Throws(IOException::class)
     private  fun gen(path: String, nameClass: String){
-        print("--->>>\n");
-        print(path);
-        print("\n--->>>\n");
-        print(nameClass);
-        print("\n--->>>\n");
+        println("--->>>");
+        println(path);
+        println("--->>>");
+        println(nameClass);
+        println("--->>>");
     }
-
 
     /// Сгенерировать файлы для Screen
     @Throws(IOException::class)
@@ -69,9 +69,9 @@ class TemplateGenerate {
     /// Сгенерировать файлы для Widget
     @Throws(IOException::class)
     private fun generateWidget(path: String, nameClass: String) {
-        println(RecourseWidget.widget)
-        println(RecourseWidget.wm)
-        println(RecourseWidget.di)
+//        println(RecourseWidget.widget)
+//        println(RecourseWidget.wm)
+//        println(RecourseWidget.di)
         val templateWidgetText = readFile(RecourseWidget.widget)
         val templateWmText = readFile(RecourseWidget.wm)
         val templateDiText = readFile(RecourseWidget.di)
@@ -117,6 +117,9 @@ class TemplateGenerate {
     /// Получаем содержимое файла в виде строки
     @Throws(IOException::class)
     private fun readFile(path: String): String {
+        println("--->>>")
+        println(path)
+        println("--->>>")
         val stringBuffer = StringBuilder()
         val inputStream = this.javaClass
             .classLoader
