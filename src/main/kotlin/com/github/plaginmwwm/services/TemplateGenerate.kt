@@ -1,6 +1,8 @@
-package com.github.plaginmwwm.service
+package com.github.plaginmwwm.services
 
-import com.github.plaginmwwm.common.*
+import com.github.plaginmwwm.common.CommonSearchString
+import com.github.plaginmwwm.common.SpecialFileNamingEnum
+import com.github.plaginmwwm.common.TypeTemplate
 import com.github.plaginmwwm.common.path.RecourseCoreMwwm
 import com.github.plaginmwwm.common.path.RecourseScreen
 import com.github.plaginmwwm.common.path.RecourseWidget
@@ -8,41 +10,27 @@ import com.github.plaginmwwm.utils.creatingFileName
 import com.github.plaginmwwm.utils.writeFile
 import java.io.IOException
 
-import java.lang.StringBuilder
-
-import kotlin.collections.HashMap
 
 class TemplateGenerate {
     /// Путь до проекта
     var pathDirectory: String? = null
 
     @Throws(IOException::class)
-    fun run(path: String, pathDirectory: String?, nameClass: String, typeTemplate: TypeTemplate) {
+    fun run(pathOutput: String, pathDirectory: String?, nameNewFiles: String, typeTemplate: TypeTemplate) {
         this.pathDirectory = pathDirectory
-        if (nameClass.trim().isEmpty()) return
         when (typeTemplate) {
-            TypeTemplate.widget -> generateWidget(path, nameClass)
-            TypeTemplate.screen -> generateScreen(path, nameClass)
-            TypeTemplate.coreMwwm -> generateCoreMwwm(path, nameClass)
-            /// todo delete
-//            TypeTemplate.widget -> gen(path, nameClass)
-//            TypeTemplate.screen -> gen(path, nameClass)
-//            TypeTemplate.coreMwwm -> gen(path, nameClass)
+            TypeTemplate.widget -> generateWidget(pathOutput, nameNewFiles)
+            TypeTemplate.screen -> generateScreen(pathOutput, nameNewFiles)
+            TypeTemplate.coreMwwm -> generateCoreMwwm(pathOutput, nameNewFiles)
         }
     }
 
-    @Throws(IOException::class)
-    private  fun gen(path: String, nameClass: String){
-        println("--->>>");
-        println(path);
-        println("--->>>");
-        println(nameClass);
-        println("--->>>");
-    }
 
     /// Сгенерировать файлы для Screen
     @Throws(IOException::class)
     private fun generateScreen(path: String, nameClass: String) {
+
+
         val templateScreenText: String = readFile(RecourseScreen.screen)
         val templateWmText: String = readFile(RecourseScreen.wm)
         val templateRouteText: String = readFile(RecourseScreen.route)
@@ -69,9 +57,6 @@ class TemplateGenerate {
     /// Сгенерировать файлы для Widget
     @Throws(IOException::class)
     private fun generateWidget(path: String, nameClass: String) {
-//        println(RecourseWidget.widget)
-//        println(RecourseWidget.wm)
-//        println(RecourseWidget.di)
         val templateWidgetText = readFile(RecourseWidget.widget)
         val templateWmText = readFile(RecourseWidget.wm)
         val templateDiText = readFile(RecourseWidget.di)
@@ -116,14 +101,11 @@ class TemplateGenerate {
 
     /// Получаем содержимое файла в виде строки
     @Throws(IOException::class)
-    private fun readFile(path: String): String {
-        println("--->>>")
-        println(path)
-        println("--->>>")
+    private fun readFile(pathInput: String): String {
         val stringBuffer = StringBuilder()
         val inputStream = this.javaClass
             .classLoader
-            .getResourceAsStream(path)
+            .getResourceAsStream(pathInput)
         if (inputStream != null) {
             var i: Int
             while (inputStream.read().also { i = it } != -1) {

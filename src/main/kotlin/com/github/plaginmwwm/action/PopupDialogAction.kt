@@ -1,21 +1,17 @@
 package com.github.plaginmwwm.action
 
 import com.github.plaginmwwm.common.TypeTemplate
-import com.github.plaginmwwm.service.TemplateGenerate
+import com.github.plaginmwwm.services.CustomGenerate
+import com.github.plaginmwwm.services.TemplateGenerate
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
-import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.workspace.virtualFileUrl
 import icons.SdkIcons
 import java.io.File
-import java.io.FileWriter
 import java.io.IOException
 import javax.swing.Icon
-import com.intellij.openapi.roots.ProjectRootManager
-import com.intellij.openapi.vfs.LocalFileSystem
 
 
 /**
@@ -36,7 +32,6 @@ class PopupDialogAction
  */(
     text: String?, description: String?, icon: Icon?, var typeTemplate: TypeTemplate,
 ) : AnAction(text, description, icon) {
-    private val generate = TemplateGenerate()
 
     /**
      * Gives the user feedback when the dynamic action menu is chosen.
@@ -54,29 +49,30 @@ class PopupDialogAction
             TypeTemplate.coreMwwm -> "Create CoreMwwm"
         }
 
-        val res = Messages.showInputDialog(
+        val nameNewFiles = Messages.showInputDialog(
             titleDialog,
             "Surf plugin",
             SdkIcons.mwwm_icon_standart_size,
         )
-        /// todo delete отсюда
-        val file = event.dataContext.getData(PlatformDataKeys.VIRTUAL_FILE)
+
         val fileDirectory = event.dataContext.getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
 
+        val pathCustomGenerator = fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates"
+        val customFile = File(pathCustomGenerator)
 
-        val str = fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates"
-        if (File(str).isDirectory) {
-            println("--->>> isDirectory")
-        }
-        /// todo delete  до сюда
+        val file = event.dataContext.getData(PlatformDataKeys.VIRTUAL_FILE)
+        val pathOutput = file?.let { getDirectory(it) }
 
-        if (file != null && fileDirectory != null && res != null) {
-            val path = getDirectory(file)
-            val pathDirectory = getDirectory(fileDirectory)
-            try {
-                generate.run(path, pathDirectory, res, typeTemplate)
-            } catch (e: IOException) {
-                e.printStackTrace()
+        if (pathOutput != null && nameNewFiles != null && nameNewFiles.trim().isNotEmpty() && fileDirectory != null) {
+            if (customFile.isDirectory) {
+                CustomGenerate().run(customFile, pathCustomGenerator, pathOutput, nameNewFiles)
+            } else {
+                val pathDirectory = getDirectory(fileDirectory)
+                try {
+                    TemplateGenerate().run(pathOutput, pathDirectory, nameNewFiles, typeTemplate)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
             }
         }
     }
