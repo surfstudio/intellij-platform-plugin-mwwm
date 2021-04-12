@@ -136,9 +136,9 @@ class TemplateGenerate {
 //        text = text.replace(CommonString.regexImportScreen.toRegex(), importScreen)
 //        text = text.replace(CommonString.regexImportWM.toRegex(), importWm)
         /// todo заглушка, пока не решена проблема с импортами
-        text = text.replace(CommonSearchString.regexImportDi.toRegex(), "")
-        text = text.replace(CommonSearchString.regexImportScreen.toRegex(), "")
-        text = text.replace(CommonSearchString.regexImportWM.toRegex(), "")
+//        text = text.replace(regexImportDi.toRegex(), "")
+//        text = text.replace(CommonSearchString.regexImportScreen.toRegex(), "")
+//        text = text.replace(CommonSearchString.regexImportWM.toRegex(), "")
         return text
     }
 }

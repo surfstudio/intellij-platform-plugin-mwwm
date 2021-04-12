@@ -1,7 +1,7 @@
 package com.github.plaginmwwm.services
 
 import com.github.plaginmwwm.utils.copyFile
-import com.github.plaginmwwm.utils.newPartPath
+import com.github.plaginmwwm.utils.newRelativeFilePath
 import com.github.plaginmwwm.utils.replaceTextFile
 import java.io.File
 import java.io.IOException
@@ -14,7 +14,7 @@ class CustomGenerate {
     fun run(dir: File, pathGenerator: String, pathOutput: String, newValueText: String) {
         val files = searchTemplateFile(dir.path)
         for (file in files) {
-            val newPartPath = newPartPath(file, pathGenerator, newValueText)
+            val newPartPath = newRelativeFilePath(file, pathGenerator, newValueText)
             val newFile = copyFile(file, newPartPath, pathOutput)
 
             if (newFile != null) {

@@ -3,6 +3,7 @@ package com.github.plaginmwwm.action
 import com.github.plaginmwwm.common.TypeTemplate
 import com.github.plaginmwwm.services.CustomGenerate
 import com.github.plaginmwwm.services.TemplateGenerate
+import com.github.plaginmwwm.utils.getDirectoryTemplate
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
@@ -51,13 +52,16 @@ class PopupDialogAction
 
         val nameNewFiles = Messages.showInputDialog(
             titleDialog,
-            "Surf plugin",
+            "SurfMwwm Gen",
             SdkIcons.mwwm_icon_standart_size,
         )
 
         val fileDirectory = event.dataContext.getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
 
-        val pathCustomGenerator = fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates"
+        val pathCustomGenerator =
+            fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates" +
+                    File.separator + getDirectoryTemplate(typeTemplate)
+
         val customFile = File(pathCustomGenerator)
 
         val file = event.dataContext.getData(PlatformDataKeys.VIRTUAL_FILE)

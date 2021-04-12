@@ -2,6 +2,7 @@ package com.github.plaginmwwm.utils
 
 import com.github.plaginmwwm.common.CommonSearchString
 import com.github.plaginmwwm.common.SpecialFileNamingEnum
+import com.github.plaginmwwm.common.TypeTemplate
 import java.io.*
 
 
@@ -43,9 +44,20 @@ fun replaceTextFile(file: File, newValueText: String) {
 }
 
 /// Создаём относительный новый путь и имя файла
-fun newPartPath(file: File, pathGenerator: String, newName: String): String {
-    return file.parent.replace(pathGenerator, "") + File.separator + file.name.replace(
-        CommonSearchString.regexSearchWord,
-        newName
-    )
+fun newRelativeFilePath(file: File, pathGenerator: String, newName: String): String {
+    return file.parent.replace(pathGenerator, "", true) + File.separator +
+            file.name.replace(CommonSearchString.regexSearchWord, newName.toLowerCase(), true)
 }
+
+/// Получить папку с нужным template
+fun getDirectoryTemplate(typeTemplate: TypeTemplate): String {
+    return when (typeTemplate) {
+        TypeTemplate.widget -> widget
+        TypeTemplate.screen -> screen
+        TypeTemplate.coreMwwm -> coreMwwm
+    }
+}
+
+private const val widget = "surf_mwwm_widget"
+private const val screen = "surf_mwwm_screen"
+private const val coreMwwm = "mwwm_widget"

@@ -9,4 +9,5 @@ object CommonSearchString {
     const val regexImportWM = "\$import_wm$"
     const val di = "di"
     const val temp = "template"
+    const val pathTemplate = "pathTemplate"
 }
