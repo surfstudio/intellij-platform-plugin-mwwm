@@ -8,6 +8,10 @@ import com.github.plaginmwwm.common.path.RecourseScreen
 import com.github.plaginmwwm.common.path.RecourseWidget
 import com.github.plaginmwwm.utils.creatingFileName
 import com.github.plaginmwwm.utils.writeFile
+import com.intellij.util.ResourceUtil
+import com.intellij.util.Url
+import org.jetbrains.debugger.getClassName
+import java.io.File
 import java.io.IOException
 
 
@@ -103,17 +107,29 @@ class TemplateGenerate {
     @Throws(IOException::class)
     private fun readFile(pathInput: String): String {
         val stringBuffer = StringBuilder()
-        val inputStream = this.javaClass
-            .classLoader
-            .getResourceAsStream(pathInput)
-        if (inputStream != null) {
-            var i: Int
-            while (inputStream.read().also { i = it } != -1) {
-                val ch = i.toChar()
-                stringBuffer.append(ch)
-            }
-        }
-        return stringBuffer.toString()
+//        val url: URL = ResourceUtil.getResource(javaClass, "templates", "query.php")
+        val url = ResourceUtil.getResource(javaClass.classLoader, RecourseScreen.baseResources, "template.dart")
+//        val file = File(url.path)
+//        val file = url.file
+        println("--->>>")
+        println(pathInput)
+        println(url)
+        println(url.readText())
+        println("--->>>")
+
+        return ""
+
+//        val inputStream = this.javaClass
+//            .classLoader
+//            .getResourceAsStream(pathInput)
+//        if (inputStream != null) {
+//            var i: Int
+//            while (inputStream.read().also { i = it } != -1) {
+//                val ch = i.toChar()
+//                stringBuffer.append(ch)
+//            }
+//        }
+//        return stringBuffer.toString()
     }
 
     /// создаём текст файла дарт

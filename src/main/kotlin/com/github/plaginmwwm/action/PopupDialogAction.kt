@@ -1,7 +1,7 @@
 package com.github.plaginmwwm.action
 
 import com.github.plaginmwwm.common.TypeTemplate
-import com.github.plaginmwwm.services.CustomGenerate
+import com.github.plaginmwwm.services.CustomFile
 import com.github.plaginmwwm.services.TemplateGenerate
 import com.github.plaginmwwm.utils.getDirectoryTemplate
 import com.intellij.openapi.actionSystem.AnAction
@@ -70,15 +70,27 @@ class PopupDialogAction
 
         if (pathOutput != null && nameNewFiles != null && nameNewFiles.trim().isNotEmpty() && fileDirectory != null) {
             if (customTemplateFile.isDirectory) {
-                CustomGenerate().run(customTemplateFile, pathCustomGenerator, pathOutput, nameNewFiles, nameProject)
+                CustomFile().runCustomGenerate(
+                    customTemplateFile,
+                    pathCustomGenerator,
+                    pathOutput,
+                    nameNewFiles,
+                    nameProject
+                )
             } else {
-                val pathDirectory = getDirectory(fileDirectory)
-
-                try {
-                    TemplateGenerate().run(pathOutput, pathDirectory, nameNewFiles, typeTemplate)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
+                CustomFile().runBaseGenerate(
+                    typeTemplate,
+                    pathOutput,
+                    nameNewFiles,
+                    nameProject
+                )
+//                val pathDirectory = getDirectory(fileDirectory)
+//
+//                try {
+//                    TemplateGenerate().run(pathOutput, pathDirectory, nameNewFiles, typeTemplate)
+//                } catch (e: IOException) {
+//                    e.printStackTrace()
+//                }
             }
         }
     }

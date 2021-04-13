@@ -3,7 +3,9 @@ package com.github.plaginmwwm.utils
 import com.github.plaginmwwm.common.CommonSearchString
 import com.github.plaginmwwm.common.SpecialFileNamingEnum
 import com.github.plaginmwwm.common.TypeTemplate
-import java.io.*
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
 
 
 /// записываем в файл текст
@@ -24,6 +26,19 @@ fun writeFile(
     } catch (e: IOException) {
         e.printStackTrace()
     }
+}
+
+/// Сохранить текст в файл
+fun saveFile(text: String, nameFile: String, pathOutput: String): File? {
+    try {
+        val file = File(pathOutput + File.separator + nameFile)
+        file.parentFile.mkdir()
+        file.writeText(text)
+        return file
+    } catch (e: Throwable) {
+        e.printStackTrace()
+    }
+    return null
 }
 
 /// Скопировать файл из темплейта
