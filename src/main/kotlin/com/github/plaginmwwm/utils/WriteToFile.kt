@@ -36,12 +36,23 @@ fun copyFile(file: File, newPath: String, pathOutput: String): File? {
     return null
 }
 
-/// Заменить Template на newValueText
-fun replaceTextFile(file: File, newValueText: String) {
-    val text = file.readText()
-    val newText = text.replace(CommonSearchString.regexSearchWord, newValueText)
-    file.writeText(newText)
+
+/// Заменить пути импорта
+fun replaceImportFile(textFile: String, pathOutput: String, nameProject: String): String {
+    val pathPackage = nameProject + pathOutput.split(nameProject + File.separator + "lib").last()
+    return textFile.replace(CommonSearchString.importTemplate, pathPackage, true)
 }
+
+/// Переименовать в импорте файл
+fun renameImportFile(textFile: String, newValueText: String): String {
+    return textFile.replace(CommonSearchString.importFileTemplate, newValueText.toLowerCase(), true)
+}
+
+/// Заменить Template на newValueText
+fun replaceTextFile(textFile: String, newValueText: String): String {
+    return textFile.replace(CommonSearchString.regexSearchWord, newValueText, true)
+}
+
 
 /// Создаём относительный новый путь и имя файла
 fun newRelativeFilePath(file: File, pathGenerator: String, newName: String): String {

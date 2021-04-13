@@ -57,6 +57,7 @@ class PopupDialogAction
         )
 
         val fileDirectory = event.dataContext.getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
+        val nameProject = event.dataContext.getData(PlatformDataKeys.PROJECT)!!.name
 
         val pathCustomGenerator =
             fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates" +
@@ -69,7 +70,7 @@ class PopupDialogAction
 
         if (pathOutput != null && nameNewFiles != null && nameNewFiles.trim().isNotEmpty() && fileDirectory != null) {
             if (customFile.isDirectory) {
-                CustomGenerate().run(customFile, pathCustomGenerator, pathOutput, nameNewFiles)
+                CustomGenerate().run(customFile, pathCustomGenerator, pathOutput, nameNewFiles, nameProject)
             } else {
                 val pathDirectory = getDirectory(fileDirectory)
                 try {

@@ -1,8 +1,6 @@
 package com.github.plaginmwwm.services
 
-import com.github.plaginmwwm.utils.copyFile
-import com.github.plaginmwwm.utils.newRelativeFilePath
-import com.github.plaginmwwm.utils.replaceTextFile
+import com.github.plaginmwwm.utils.*
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
@@ -11,14 +9,19 @@ import java.nio.file.Paths
 
 class CustomGenerate {
 
-    fun run(dir: File, pathGenerator: String, pathOutput: String, newValueText: String) {
+    fun run(dir: File, pathGenerator: String, pathOutput: String, newValueText: String, nameProject: String) {
         val files = searchTemplateFile(dir.path)
         for (file in files) {
             val newPartPath = newRelativeFilePath(file, pathGenerator, newValueText)
             val newFile = copyFile(file, newPartPath, pathOutput)
 
             if (newFile != null) {
-                replaceTextFile(newFile, newValueText)
+                var textFile = newFile.readText()
+                /// Запускать в replaceTextFile последним
+                textFile = replaceImportFile(textFile, pathOutput, nameProject)
+                textFile = renameImportFile(textFile, newValueText)
+                textFile = replaceTextFile(textFile, newValueText)
+                newFile.writeText(textFile)
             }
         }
     }
