@@ -36,7 +36,6 @@ fun copyFile(file: File, newPath: String, pathOutput: String): File? {
     return null
 }
 
-
 /// Заменить пути импорта
 fun replaceImportFile(textFile: String, pathOutput: String, nameProject: String): String {
     val pathPackage = nameProject + pathOutput.split(nameProject + File.separator + "lib").last()
@@ -52,7 +51,6 @@ fun renameImportFile(textFile: String, newValueText: String): String {
 fun replaceTextFile(textFile: String, newValueText: String): String {
     return textFile.replace(CommonSearchString.regexSearchWord, newValueText, true)
 }
-
 
 /// Создаём относительный новый путь и имя файла
 fun newRelativeFilePath(file: File, pathGenerator: String, newName: String): String {

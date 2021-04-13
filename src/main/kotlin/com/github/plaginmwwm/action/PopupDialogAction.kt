@@ -63,16 +63,17 @@ class PopupDialogAction
             fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates" +
                     File.separator + getDirectoryTemplate(typeTemplate)
 
-        val customFile = File(pathCustomGenerator)
+        val customTemplateFile = File(pathCustomGenerator)
 
         val file = event.dataContext.getData(PlatformDataKeys.VIRTUAL_FILE)
         val pathOutput = file?.let { getDirectory(it) }
 
         if (pathOutput != null && nameNewFiles != null && nameNewFiles.trim().isNotEmpty() && fileDirectory != null) {
-            if (customFile.isDirectory) {
-                CustomGenerate().run(customFile, pathCustomGenerator, pathOutput, nameNewFiles, nameProject)
+            if (customTemplateFile.isDirectory) {
+                CustomGenerate().run(customTemplateFile, pathCustomGenerator, pathOutput, nameNewFiles, nameProject)
             } else {
                 val pathDirectory = getDirectory(fileDirectory)
+
                 try {
                     TemplateGenerate().run(pathOutput, pathDirectory, nameNewFiles, typeTemplate)
                 } catch (e: IOException) {
