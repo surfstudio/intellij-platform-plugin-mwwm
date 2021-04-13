@@ -1,1 +1,1 @@
-rootProject.name = "plagin_mwwm"
+rootProject.name = "SurfMwwm Gen"
