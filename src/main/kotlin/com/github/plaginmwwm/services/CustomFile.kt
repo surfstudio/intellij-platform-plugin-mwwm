@@ -1,6 +1,8 @@
 package com.github.plaginmwwm.services
 
+import com.github.plaginmwwm.common.FileNaming
 import com.github.plaginmwwm.common.TypeTemplate
+import com.github.plaginmwwm.common.di
 import com.github.plaginmwwm.utils.*
 import com.intellij.util.ResourceUtil
 import java.io.File
@@ -42,31 +44,31 @@ class CustomFile {
         val files: MutableSet<File> = HashSet()
 
         val urlWidget = ResourceUtil.getResource(javaClass.classLoader, path, "template.dart")
-        val fileWidget = saveFile(urlWidget.readText(), newName.toLowerCase() + ".dart", pathOutput)
+        val fileWidget = saveFile(urlWidget.readText(), newName.toLowerCase() + FileNaming.extension, pathOutput)
         if (fileWidget != null)
             files.add(fileWidget)
 
         val urlWM = ResourceUtil.getResource(javaClass.classLoader, path, "template_wm.dart")
-        val fileWM = saveFile(urlWM.readText(), newName.toLowerCase() + "_wm.dart", pathOutput)
+        val fileWM = saveFile(urlWM.readText(), newName.toLowerCase() + FileNaming.wm, pathOutput)
         if (fileWM != null)
             files.add(fileWM)
 
         val urlComponent = ResourceUtil.getResource(
             javaClass.classLoader,
-            path + File.separator + "di",
+            path + File.separator + di,
             "template_component.dart"
         )
         val fileComponent = saveFile(
             urlComponent.readText(),
-            newName.toLowerCase() + "_component.dart",
-            pathOutput + File.separator + "di"
+            newName.toLowerCase() + FileNaming.component,
+            pathOutput + File.separator + di
         )
         if (fileComponent != null)
             files.add(fileComponent)
 
         if (typeTemplate == TypeTemplate.screen) {
             val urlRoute = ResourceUtil.getResource(javaClass.classLoader, path, "template_route.dart")
-            val fileRoute = saveFile(urlRoute.readText(), newName.toLowerCase() + "_route.dart", pathOutput)
+            val fileRoute = saveFile(urlRoute.readText(), newName.toLowerCase() + FileNaming.route, pathOutput)
             if (fileRoute != null)
                 files.add(fileRoute)
         }

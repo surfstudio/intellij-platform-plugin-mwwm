@@ -2,7 +2,6 @@ package com.github.plaginmwwm.action
 
 import com.github.plaginmwwm.common.TypeTemplate
 import com.github.plaginmwwm.services.CustomFile
-import com.github.plaginmwwm.services.TemplateGenerate
 import com.github.plaginmwwm.utils.getDirectoryTemplate
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -11,7 +10,6 @@ import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.VirtualFile
 import icons.SdkIcons
 import java.io.File
-import java.io.IOException
 import javax.swing.Icon
 
 

@@ -1,32 +1,8 @@
 package com.github.plaginmwwm.utils
 
 import com.github.plaginmwwm.common.CommonSearchString
-import com.github.plaginmwwm.common.SpecialFileNamingEnum
 import com.github.plaginmwwm.common.TypeTemplate
 import java.io.File
-import java.io.FileWriter
-import java.io.IOException
-
-
-/// записываем в файл текст
-fun writeFile(
-    path: String, nameFile: String?, namingEnum: SpecialFileNamingEnum,
-    textFile: String
-) {
-    try {
-        val pathNewFile = when (namingEnum) {
-            SpecialFileNamingEnum.di -> path + File.separator + CommonSearchString.di + File.separator + nameFile
-            else -> path + File.separator + nameFile
-        }
-        val file = File(pathNewFile)
-        File(file.parent).mkdirs() //создаём директории, если отсутствуют
-        val fileWriter = FileWriter(file, false)
-        fileWriter.write(textFile)
-        fileWriter.flush()
-    } catch (e: IOException) {
-        e.printStackTrace()
-    }
-}
 
 /// Сохранить текст в файл
 fun saveFile(text: String, nameFile: String, pathOutput: String): File? {
