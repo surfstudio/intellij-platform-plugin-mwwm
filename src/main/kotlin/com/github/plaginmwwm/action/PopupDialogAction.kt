@@ -1,7 +1,7 @@
 package com.github.plaginmwwm.action
 
-import com.github.plaginmwwm.common.TypeTemplate
-import com.github.plaginmwwm.services.CustomFile
+import com.github.plaginmwwm.common.TemplateType
+import com.github.plaginmwwm.services.GenerateFile
 import com.github.plaginmwwm.utils.getDirectoryTemplate
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -28,8 +28,9 @@ class PopupDialogAction
  * @param text        The text to be displayed as a menu item.
  * @param description The description of the menu item.
  * @param icon        The icon to be used with the menu item.
+ * @param templateType параметр для понимания какой пункт меню выбрали
  */(
-    text: String?, description: String?, icon: Icon?, var typeTemplate: TypeTemplate,
+    text: String?, description: String?, icon: Icon?, var templateType: TemplateType,
 ) : AnAction(text, description, icon) {
 
     /**
@@ -42,12 +43,15 @@ class PopupDialogAction
     override fun actionPerformed(event: AnActionEvent) {
 
 
-        val titleDialog: String = when (typeTemplate) {
-            TypeTemplate.widget -> "Create Widget"
-            TypeTemplate.screen -> "Create Screen"
-            TypeTemplate.coreMwwm -> "Create CoreMwwm"
+        val titleDialog: String = when (templateType) {
+            TemplateType.widget -> "Create Widget"
+            TemplateType.screen -> "Create Screen"
+            TemplateType.coreMwwm -> "Create CoreMwwm"
         }
 
+        /**
+         * Показать диалог для ввода имени класса
+         */
         val nameNewFiles = Messages.showInputDialog(
             titleDialog,
             "SurfMwwm Gen",
@@ -57,38 +61,34 @@ class PopupDialogAction
         val fileDirectory = event.dataContext.getData(PlatformDataKeys.PROJECT_FILE_DIRECTORY)
         val nameProject = event.dataContext.getData(PlatformDataKeys.PROJECT)!!.name
 
-        val pathCustomGenerator =
+        /**
+         * Директория, где должен находиться кастомный template
+         */
+        val nameOutDir =
             fileDirectory?.path + File.separator + "mwwm_generator" + File.separator + "templates" +
-                    File.separator + getDirectoryTemplate(typeTemplate)
+                    File.separator + getDirectoryTemplate(templateType)
 
-        val customTemplateFile = File(pathCustomGenerator)
+        val customTemplateFile = File(nameOutDir)
 
         val file = event.dataContext.getData(PlatformDataKeys.VIRTUAL_FILE)
         val pathOutput = file?.let { getDirectory(it) }
 
         if (pathOutput != null && nameNewFiles != null && nameNewFiles.trim().isNotEmpty() && fileDirectory != null) {
             if (customTemplateFile.isDirectory) {
-                CustomFile().runCustomGenerate(
+                GenerateFile().runCustomGenerate(
                     customTemplateFile,
-                    pathCustomGenerator,
+                    nameOutDir,
                     pathOutput,
                     nameNewFiles,
                     nameProject
                 )
             } else {
-                CustomFile().runBaseGenerate(
-                    typeTemplate,
+                GenerateFile().runBaseGenerate(
+                    templateType,
                     pathOutput,
                     nameNewFiles,
                     nameProject
                 )
-//                val pathDirectory = getDirectory(fileDirectory)
-//
-//                try {
-//                    TemplateGenerate().run(pathOutput, pathDirectory, nameNewFiles, typeTemplate)
-//                } catch (e: IOException) {
-//                    e.printStackTrace()
-//                }
             }
         }
     }

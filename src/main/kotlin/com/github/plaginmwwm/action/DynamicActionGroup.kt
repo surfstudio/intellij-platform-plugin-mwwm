@@ -1,11 +1,10 @@
 // Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 package com.github.plaginmwwm.action
 
-import com.github.plaginmwwm.common.TypeTemplate
+import com.github.plaginmwwm.common.TemplateType
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import icons.SdkIcons
 
 
 /**
@@ -25,11 +24,13 @@ class DynamicActionGroup : ActionGroup() {
      * [PopupDialogAction] class.
      */
     override fun getChildren(e: AnActionEvent?): Array<AnAction> {
-
+        /**
+         * Выбор в меню
+         */
         return arrayOf(
-                PopupDialogAction("Create widget", "Dynamic Action Demo", null, TypeTemplate.widget),
-                PopupDialogAction("Create screen", "Dynamic Action Demo", null, TypeTemplate.screen),
-                PopupDialogAction("Create CoreMwwmWidget", "Dynamic Action Demo", null, TypeTemplate.coreMwwm),
+            PopupDialogAction("Create widget", "Create widget", null, TemplateType.widget),
+            PopupDialogAction("Create screen", "Create screen", null, TemplateType.screen),
+            PopupDialogAction("Create CoreMwwmWidget", "Create CoreMwwmWidget", null, TemplateType.coreMwwm),
         )
     }
 }

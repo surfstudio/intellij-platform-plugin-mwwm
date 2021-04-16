@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
+    <id>org.jetbrains.plugins.mwwm</id>
     <name>SurfMwwm Gen</name>
     <vendor>SurfGear</vendor>
 
@@ -9,24 +9,22 @@
 
     <description>
         <![CDATA[
-      TemplateTemplateTemplateTemplateTemplateTemplate - 40 symbols.
+      Generate template for surf_mwwm and mwwm code.
     ]]>
     </description>
     <change-notes>
         <![CDATA[
       <ul>
-        <li><b>2.0.0</b> TemplateTemplateTemplateTemplateTemplateTemplate.</li>
-        <li><b>1.1</b> TemplateTemplateTemplateTemplateTemplateTemplate.</li>
-        <li><b>1.0</b> Release 2019.2 and earlier.</li>
+        <li><b>0.0.1</b> Release 2019.2 and earlier.</li>
       </ul>
     ]]>
     </change-notes>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
-            serviceImplementation="com.github.plaginmwwm.services.MyApplicationService"/>
+                serviceImplementation="com.github.plaginmwwm.services.MyApplicationService"/>
         <projectService
-            serviceImplementation="com.github.plaginmwwm.services.MyProjectService"/>
+                serviceImplementation="com.github.plaginmwwm.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>

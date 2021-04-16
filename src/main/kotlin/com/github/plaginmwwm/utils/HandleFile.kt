@@ -1,7 +1,7 @@
 package com.github.plaginmwwm.utils
 
 import com.github.plaginmwwm.common.CommonSearchString
-import com.github.plaginmwwm.common.TypeTemplate
+import com.github.plaginmwwm.common.TemplateType
 import java.io.File
 
 /// Сохранить текст в файл
@@ -44,17 +44,17 @@ fun replaceTextFile(textFile: String, newValueText: String): String {
 }
 
 /// Создаём относительный новый путь и имя файла
-fun newRelativeFilePath(file: File, pathGenerator: String, newName: String): String {
+fun newRelativeFilePath(file: File, pathGenerator: String, nameTemplate: String): String {
     return file.parent.replace(pathGenerator, "", true) + File.separator +
-            file.name.replace(CommonSearchString.regexSearchWord, newName.toLowerCase(), true)
+            file.name.replace(CommonSearchString.regexSearchWord, nameTemplate.toLowerCase(), true)
 }
 
 /// Получить папку с нужным template
-fun getDirectoryTemplate(typeTemplate: TypeTemplate): String {
-    return when (typeTemplate) {
-        TypeTemplate.widget -> widget
-        TypeTemplate.screen -> screen
-        TypeTemplate.coreMwwm -> coreMwwm
+fun getDirectoryTemplate(templateType: TemplateType): String {
+    return when (templateType) {
+        TemplateType.widget -> widget
+        TemplateType.screen -> screen
+        TemplateType.coreMwwm -> coreMwwm
     }
 }
 
